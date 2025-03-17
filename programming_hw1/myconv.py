@@ -25,17 +25,32 @@ n = np.arange(0, 41)
 x1 = np.where(n<21, n, 40-n)
 x2 = np.where((n>=1)&(n<11), 1, 0)
 
-#draw(n, x1, 'n', 'x1')
-#draw(n, x2, 'n', 'x2')
+draw(n, x1, 'n', 'x1')
+draw(n, x2, 'n', 'x2')
 
 ### Part b
 y1 = np.convolve(x1, x2, mode='full')
 n = np.arange(0, len(y1))
-#draw(n, y1, 'n', 'y', 'np.convolve')
+draw(n, y1, 'n', 'y', 'np.convolve')
 
 ### Part c
 y2 = my_colv(x1, x2)
-#draw(n, y2, 'n', 'y', 'my_colv')
+draw(n, y2, 'n', 'y', 'my_colv')
 print(y1.all() == y2.all())
 
 ### Part d
+x1 = np.array([0, 3, 9, 27, 0])
+x2 = np.array([0, 2, 4, 8, 16, 32, 0])
+n = np.arange(0, 5)
+draw(n, x1, 'n', 'x1')
+n = np.arange(0, 7)
+draw(n, x2, 'n', 'x2')
+
+y1 = np.convolve(x1, x2, 'full')
+n = np.arange(0, len(y1))
+draw(n, y1, 'n', 'y', 'np.convolve')
+
+y2 = my_colv(x1, x2)
+draw(n, y2, 'n', 'y', 'my_conv')
+
+print(y1.all() == y2.all())

@@ -11,15 +11,27 @@ def draw(x, y, x_label='', y_label='', title=''):
 def my_colv(x1, x2):
     len1 = len(x1)
     len2 = len(x2)
-    result = []
-    for i in range(len1+len2-1):
-        sum = 0
-        for j in reversed(range(i+1)):
-            if j >= len2 or i-j >= len1:
-                continue
-            sum += x2[j]*x1[i-j]
-        result.append(sum)
-    return np.array(result).astype(np.int32)
+    #result = [] ###直接乘
+    # for i in range(len1+len2-1):
+    #     sum = 0
+    #     for j in reversed(range(i+1)):
+    #         if j >= len2 or i-j >= len1:
+    #             continue
+    #         sum += x2[j]*x1[i-j]
+    #     result.append(sum)
+    # return np.array(result).astype(np.int32)
+    conv_mat = []
+    for i in range(len1 + len2 -1):
+        tmp = []
+        for j in range(len1):
+            if i - j >= 0 and i - j < len2:
+                tmp.append(x2[i-j])
+            else:
+                tmp.append(0)
+        conv_mat.append(tmp)
+    conv_mat = np.array(conv_mat)
+    result = conv_mat @ x1
+    return result
 ### Part a 
 n = np.arange(0, 41)
 x1 = np.where(n<21, n, 40-n)

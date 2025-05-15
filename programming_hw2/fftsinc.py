@@ -20,12 +20,12 @@ plt.show()
 
 x_k = np.fft.fft(x_n) 
 x_k_shifted = np.fft.fftshift(x_k) # 將低頻移到中心
-omega = np.linspace(-np.pi, np.pi, len(x_k_shifted))  #DFT 每2*pi都是一個週期
+freq = np.linspace(-500, 500, len(x_k_shifted))  
 
-plt.plot(omega, np.abs(x_k_shifted))
+plt.plot(freq, np.abs(x_k_shifted))
 plt.title('DFT of x[n] (Magnitude Spectrum)')
-plt.xlabel('Frequency ω (radians/sample)')
-plt.ylabel('|X(e^(jω))|')
+plt.xlabel('k')
+plt.ylabel('X_k')
 plt.grid(True)
 plt.show()
 
@@ -37,10 +37,10 @@ for k in range(N):
         X_manual[k] += x_n[n] * np.exp(-1j * 2 * np.pi * k * n / N)
 X_manual_shifted = np.fft.fftshift(X_manual)  # 將低頻移到中心
 
-plt.plot(omega, np.abs(X_manual_shifted))
+plt.plot(freq, np.abs(X_manual_shifted))
 plt.title('DFT of x[n] (Magnitude Spectrum)')
-plt.xlabel('Frequency ω (radians/sample)')
-plt.ylabel('|X(e^(jω))|')
+plt.xlabel('k')
+plt.ylabel('X_k')
 plt.grid(True)
 plt.show()
 
@@ -78,11 +78,11 @@ plt.show()
 
 y_k = np.fft.fft(y_n) 
 y_k_shifted = np.fft.fftshift(y_k)
-omega = np.linspace(-np.pi, np.pi, len(y_k_shifted))
+freq = np.linspace(-500, 500, len(y_k_shifted))
 
-plt.plot(omega, np.abs(y_k_shifted))
+plt.plot(freq, np.abs(y_k_shifted))
 plt.title('DFT of y[n] (Magnitude Spectrum)')
-plt.xlabel('Frequency ω (radians/sample)')
-plt.ylabel('|Y(e^(jω))|')
+plt.xlabel('k')
+plt.ylabel('X_k')
 plt.grid(True)
 plt.show()
